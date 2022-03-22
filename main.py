@@ -197,6 +197,12 @@ def get_args():
         help="Coco segmentation will be populated with a polygon "
         "that matches replicates the bounding box data.",
     )
+    parser.add_argument(
+        "--imgf",
+        default="jpg",
+        type=str,
+        help="Images' dataset's extension."
+    )
     args = parser.parse_args()
     return args
 
