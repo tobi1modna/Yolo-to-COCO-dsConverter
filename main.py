@@ -27,14 +27,14 @@ def get_images_info_and_annotations(opt):
     annotations = []
     images_annotations = []
     if path.is_dir():
-        file_paths = sorted(path.rglob("*.jpg"))
+        file_paths = sorted(path.rglob(f"*.{opt.imgf}"))
     else:
         with open(path, "r") as fp:
             read_lines = fp.readlines()
         file_paths = [Path(line.replace("\n", "")) for line in read_lines]
 
     image_id = 0
-    annotation_id = 1  # In COCO dataset format, you must start annotation id with '1'
+    annotation_id = 1
 
     for file_path in file_paths:
         # Check how many items have progressed
