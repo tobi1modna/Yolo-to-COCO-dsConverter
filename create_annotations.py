@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def create_image_annotation(file_path: Path, width: int, height: int, image_id: int):
-    file_path = file_path.name
+    file_path = str(file_path)
     image_annotation = {
         "file_name": file_path,
         "height": height,
