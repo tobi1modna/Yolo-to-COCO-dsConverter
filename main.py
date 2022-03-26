@@ -48,7 +48,8 @@ def get_images_info_and_annotations(opt):
         )
         images_annotations.append(image_annotation)
 
-        label_file_name = f"{file_path.stem}.txt"
+        label_file_name = f"{file_path}.txt"
+        #label_file_name = f"{file_path.stem}.txt"
         if opt.yolo_subdir:
             annotations_path = file_path.parent / YOLO_DARKNET_SUB_DIR / label_file_name
         else:
