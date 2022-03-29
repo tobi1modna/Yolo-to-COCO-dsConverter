@@ -65,8 +65,6 @@ def get_images_info_and_annotations(opt):
         else:
             annotations_path = file_path.parent / label_file_name
 
-        print(class_dict[file_path.parent.stem])
-
         if not annotations_path.exists():
             continue  # The image may not have any applicable annotation txt file.
 
