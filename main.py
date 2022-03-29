@@ -9,6 +9,7 @@ import cv2
 import argparse
 import json
 import numpy as np
+import os
 
 #################################################
 # Change the classes depend on your own dataset.#
@@ -18,8 +19,18 @@ import numpy as np
 YOLO_DARKNET_SUB_DIR = "YOLO_darknet"
 
 classes = [
+    "cube",
+    "cup",
     "hotstab",
+    "jug",
 ]
+
+class_dict = { 
+    "cube": 1,
+    "cup": 2,
+    "hotstab": 3,
+    "jug": 4 
+}
 
 
 def get_images_info_and_annotations(opt):
@@ -54,6 +65,8 @@ def get_images_info_and_annotations(opt):
         else:
             annotations_path = file_path.parent / label_file_name
 
+        print(class_dict[file_path.parent.stem])
+
         if not annotations_path.exists():
             continue  # The image may not have any applicable annotation txt file.
 
@@ -64,9 +77,10 @@ def get_images_info_and_annotations(opt):
         # coco format - (annotation_id, x_upper_left, y_upper_left, width, height)
         for line1 in label_read_line:
             label_line = line1
-            category_id = (
-                int(label_line.split()[0]) + 1
-            )  # you start with annotation id with '1'
+            category_id = class_dict[file_path.parent.stem]        
+            #category_id = (
+                #int(label_line.split()[0]) + 1
+            #)  # you start with annotation id with '1'
             x_center = float(label_line.split()[1])
             y_center = float(label_line.split()[2])
             width = float(label_line.split()[3])
@@ -178,7 +192,7 @@ def get_args():
     )
     parser.add_argument(
         "--output",
-        default="train_coco.json",
+        default="instances_train2017.json",
         type=str,
         help="Name the output json file",
     )
@@ -199,13 +213,23 @@ def get_args():
         type=str,
         help="Images' dataset's extension."
     )
+    parser.add_argument(
+        "--inplace",
+        action="store_true",
+        help="Output annotations file is store in <--path>/annotations/<--output>"
+    )
     args = parser.parse_args()
     return args
 
 
 def main(opt):
     output_name = opt.output
-    output_path = "output/" + output_name
+    if opt.inplace is True:
+        if not Path(opt.path + '/annotations').exists:
+            os.mkdir(str(opt.path) + '/annotations')
+        output_path = str(opt.path) + '/annotations/' + output_name
+    else:
+        output_path = "output/" + output_name
 
     print("Start!")
 
