@@ -223,7 +223,7 @@ def get_args():
 def main(opt):
     output_name = opt.output
     if opt.inplace is True:
-        if not Path(opt.path + '/annotations').exists:
+        if not Path(opt.path + 'annotations').exists:
             os.mkdir(str(opt.path) + '/annotations')
         output_path = str(opt.path) + '/annotations/' + output_name
     else:
