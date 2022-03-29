@@ -19,15 +19,15 @@ import os
 YOLO_DARKNET_SUB_DIR = "YOLO_darknet"
 
 classes = [
-    "cube1",
-    "cup1",
+    "cube",
+    "cup",
     "hotstab",
     "jug",
 ]
 
 class_dict = { 
-    "cube1": 1,
-    "cup1": 2,
+    "cube": 1,
+    "cup": 2,
     "hotstab": 3,
     "jug": 4 
 }
