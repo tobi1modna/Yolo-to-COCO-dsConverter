@@ -19,15 +19,15 @@ import os
 YOLO_DARKNET_SUB_DIR = "YOLO_darknet"
 
 classes = [
-    "cube",
-    "cup",
+    "cube1",
+    "cup1",
     "hotstab",
     "jug",
 ]
 
 class_dict = { 
-    "cube": 1,
-    "cup": 2,
+    "cube1": 1,
+    "cup1": 2,
     "hotstab": 3,
     "jug": 4 
 }
@@ -223,9 +223,10 @@ def get_args():
 def main(opt):
     output_name = opt.output
     if opt.inplace is True:
-        if not Path(opt.path + 'annotations').exists:
-            os.mkdir(os.path.join(str(opt.path), 'annotations'))
-        output_path = str(opt.path) + 'annotations/' + output_name
+        annpath = str(opt.path) + "/annotations"
+        if not (os.path.exists(annpath)):
+            os.mkdir(annpath)
+        output_path = str(opt.path) + '/annotations/' + output_name
     else:
         output_path = "output/" + output_name
 
