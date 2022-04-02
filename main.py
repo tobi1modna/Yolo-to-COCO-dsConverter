@@ -75,10 +75,10 @@ def get_images_info_and_annotations(opt):
         # coco format - (annotation_id, x_upper_left, y_upper_left, width, height)
         for line1 in label_read_line:
             label_line = line1
-            #category_id = class_dict[file_path.parent.stem]        
-            category_id = (
-                int(label_line.split()[0]) + 1
-            )  # you start with annotation id with '1'
+            category_id = class_dict[file_path.parent.stem]        
+            #category_id = (
+               # int(label_line.split()[0]) + 1
+            #)  # you start with annotation id with '1'
             x_center = float(label_line.split()[1])
             y_center = float(label_line.split()[2])
             width = float(label_line.split()[3])
