@@ -77,7 +77,7 @@ def get_images_info_and_annotations(opt):
             label_line = line1
             category_id = class_dict[file_path.parent.stem]        
             #category_id = (
-               # int(label_line.split()[0]) + 1
+                #int(label_line.split()[0]) + 1
             #)  # you start with annotation id with '1'
             x_center = float(label_line.split()[1])
             y_center = float(label_line.split()[2])
@@ -214,7 +214,7 @@ def get_args():
     parser.add_argument(
         "--inplace",
         action="store_true",
-        help="Output annotations file is store in <--path>/../annotations/<--output>"
+        help="Output annotations file is store in <--path>/annotations/<--output>"
     )
     args = parser.parse_args()
     return args
@@ -223,10 +223,10 @@ def get_args():
 def main(opt):
     output_name = opt.output
     if opt.inplace is True:
-        annpath = str(opt.path) + "/../annotations"
+        annpath = str(opt.path) + "/annotations"
         if not (os.path.exists(annpath)):
             os.mkdir(annpath)
-        output_path = str(opt.path) + '/../annotations/' + output_name
+        output_path = str(opt.path) + '/annotations/' + output_name
     else:
         output_path = "output/" + output_name
 
