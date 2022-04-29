@@ -21,15 +21,15 @@ YOLO_DARKNET_SUB_DIR = "YOLO_darknet"
 classes = [
     "cube",
     "cup",
-    "hotstab",
     "jug",
+    "hotstab",
 ]
 
 class_dict = { 
     "cube": 1,
     "cup": 2,
-    "hotstab": 3,
-    "jug": 4 
+    "jug": 3,
+    "hotstab": 4 
 }
 
 
